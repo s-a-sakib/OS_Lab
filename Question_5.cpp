@@ -7,12 +7,14 @@ be given in the CLI of Linux based systems.
  
 Example: 
 $ ./parent_process 3 child_1 child_2 child_3
+    pstree -p Parent_Process_PID
 */
-
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/prctl.h>
 #include <sys/wait.h>
 #include <string.h>
 
@@ -28,6 +30,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    printf("Parent Process: %d has created %d child processes.\n", getpid(), n);
+
     pid_t pids[n];
 
     for (int i = 0; i < n; i++) {
@@ -37,7 +41,9 @@ int main(int argc, char *argv[]) {
             exit(1);
         } else if (pids[i] == 0) {
             // Child process
+            prctl(PR_SET_NAME, argv[i + 2], 0, 0, 0); // Set child process name
             printf("Child Process: %s with PID: %d\n", argv[i + 2], getpid());
+            sleep(10); // Simulate some work or keep the process alive for tracing
             exit(0);
         }
     }
@@ -46,7 +52,5 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < n; i++) {
         waitpid(pids[i], NULL, 0);
     }
-
-    printf("Parent Process: %d has created %d child processes.\n", getpid(), n);
     return 0;
 }

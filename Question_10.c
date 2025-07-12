@@ -14,7 +14,7 @@
 
 int main() {
     int fd;
-    char *fifo_path = "/tmp/my_fifo";
+    char *fifo_path = "my_fifo";
     char buffer[BUFFER_SIZE];
 
     // Create the named pipe (FIFO)

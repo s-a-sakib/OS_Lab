@@ -1,5 +1,9 @@
 /*
     Write a C program to create an orphan process.
+
+    What is Orphan Process?
+    Ans. An orphan process is a process whose parent has terminated 
+    or exited before the child process finishes execution.
 */ 
 
 #include <stdio.h>
@@ -19,4 +23,5 @@ int main(){
         printf("Parent process (PID: %d) created child with PID: %d\n", getpid(), pid);
         sleep(2); // Allow child to run first
     }
+    return 0;
 }

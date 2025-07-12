@@ -1,6 +1,6 @@
 /*
-    Write a C program to analyze the effect of local and global variables on a 
-    parent process and a child process.
+    Write a C program to analyze the effect of local and 
+    global variables on a parent process and a child process.
 
     The program should create a child process using fork() and demonstrate how 
     changes to local and global variables in the parent process do not affect 

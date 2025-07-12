@@ -1,3 +1,8 @@
+/*
+    Write a C program to show how two unrelated processes can communicate
+    with each other by a message queue.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
